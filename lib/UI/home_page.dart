@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
+                            color:const Color(0xffefaa82)
                           ),
                         ),
                         Row(
@@ -52,6 +53,7 @@ class HomePage extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 80,
                                 fontWeight: FontWeight.w500,
+                                  color:Color(0xffefaa82)
                               ),
                             )
                           ],
@@ -60,11 +62,13 @@ class HomePage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
+                                color:Color(0xffefaa82)
                             )),
                         Text("${state.weather.areaName}",
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
+                                color:Color(0xffefaa82)
                             )),
                         Text(
                             DateFormat("M/d/y").format(state.weather.date!)
@@ -73,6 +77,7 @@ class HomePage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
+                                color:Color(0xffefaa82)
                             )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -82,6 +87,7 @@ class HomePage extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
+                                    color:Color(0xffefaa82)
                                 )),
                             const VerticalDivider(
                               color: Colors.black,
@@ -92,6 +98,7 @@ class HomePage extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
+                                    color:Color(0xffefaa82)
                                 ))
                           ],
                         )
@@ -147,7 +154,7 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                         const Divider(
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -187,28 +194,27 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height * 0.01,
-                  // ),
-                   Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: Align(
-                       alignment: Alignment.centerLeft,
-                       child: Text('The Weather is ${state.weather.weatherDescription!}',
-                           style: const TextStyle(
-                             fontSize: 20,
-                             fontWeight: FontWeight.w600,
-                           )),
-                     ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                   Align(
+                     alignment: Alignment.centerLeft,
+                     child: Text('The Weather is ${state.weather.weatherDescription!}',
+                         style: const TextStyle(
+                           fontSize: 20,
+                           fontWeight: FontWeight.w600,
+                           color: Colors.white
+                         )),
                    ),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Text(
                        " Good morning! Step into a new day with our weather app. today's ${state.weather.weatherDescription}, ensuring you're ready for whatever weather comes your way. From sunrise up of today at ${DateFormat().add_jm().format(state.weather.sunrise!)} and  sunset at ${DateFormat().add_jm().format(state.weather.sunset!)}, stay informed ",
                        maxLines: 5,
                        style: const TextStyle(
                          fontSize: 15,
                          fontWeight: FontWeight.w600,
+                         color: Colors.white
                        )),
                     ),
                 ],

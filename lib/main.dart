@@ -4,7 +4,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
 
 import 'UI/home_page.dart';
+import 'UI/homepagedesk.dart';
 import 'UI/loading_screen.dart';
+import 'UI/responsive_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,17 +31,18 @@ class MyApp extends StatelessWidget {
             return BlocProvider<WeatherBloc>(
                 create: (context) =>
                     WeatherBloc()..add(FetchWeather(snap.data as Position)),
-                child: const HomePage());
+                child: ResponsiveLayout(
+                    mobileBody: const HomePage(),
+                    tabletBody: const HomePageDesktop(),
+                    desktopBody: const HomePageDesktop()));
           } else {
-            return LoadingScreen();
+            return const LoadingScreen();
           }
         },
       ),
     );
   }
 }
-
-
 
 /// Determine the current position of the device.
 ///

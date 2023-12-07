@@ -20,6 +20,7 @@ class WeatherInfoWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w400,
+              color: Colors.white
             )),
         Row(
           children: [
@@ -32,6 +33,7 @@ class WeatherInfoWidget extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
+                    color: Colors.white
                 ))
           ],
         )
