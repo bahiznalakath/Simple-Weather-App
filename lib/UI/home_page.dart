@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:weather_app/UI/loading_screen.dart';
 import 'package:weather_app/UI/widgets/WeatherInfo.dart';
 import 'package:weather_app/UI/widgets/getWeatherIcon.dart';
-import 'package:weather_app/bloc/weather_bloc.dart';
 
+import '../Domain/bloc/weather_bloc.dart';
+import '../data/colors.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -36,12 +37,12 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text(
+                          Text(
                           "Today",
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
-                            color:const Color(0xffefaa82)
+                            color:textColor1
                           ),
                         ),
                         Row(
@@ -50,44 +51,44 @@ class HomePage extends StatelessWidget {
                             getWeatherIcon(state.weather.weatherConditionCode!),
                             Text(
                               " ${state.weather.temperature!.celsius!.round()}°C",
-                              style: const TextStyle(
+                              style:   TextStyle(
                                 fontSize: 80,
                                 fontWeight: FontWeight.w500,
-                                  color:Color(0xffefaa82)
+                                  color:textColor1
                               ),
                             )
                           ],
                         ),
                         Text(state.weather.weatherMain!.toLowerCase(),
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                                color:Color(0xffefaa82)
+                                color:textColor1
                             )),
                         Text("${state.weather.areaName}",
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
-                                color:Color(0xffefaa82)
+                                color: textColor1
                             )),
                         Text(
                             DateFormat("M/d/y").format(state.weather.date!)
                             // "21 Oct 2019",
                             ,
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
-                                color:Color(0xffefaa82)
+                                color:textColor1
                             )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                                 "Feels like ${state.weather.weatherDescription}",
-                                style: const TextStyle(
+                                style:   TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
-                                    color:Color(0xffefaa82)
+                                    color:textColor1
                                 )),
                             const VerticalDivider(
                               color: Colors.black,
@@ -95,10 +96,10 @@ class HomePage extends StatelessWidget {
                             ),
                             Text(
                                 "Sunset ${DateFormat().add_jm().format(state.weather.sunset!)}",
-                                style: const TextStyle(
+                                style:  TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
-                                    color:Color(0xffefaa82)
+                                    color:textColor1
                                 ))
                           ],
                         )
@@ -153,8 +154,8 @@ class HomePage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Divider(
-                          color: Colors.white,
+                       Divider(
+                          color: textColor2,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -200,10 +201,10 @@ class HomePage extends StatelessWidget {
                    Align(
                      alignment: Alignment.centerLeft,
                      child: Text('The Weather is ${state.weather.weatherDescription!}',
-                         style: const TextStyle(
+                         style: TextStyle(
                            fontSize: 20,
                            fontWeight: FontWeight.w600,
-                           color: Colors.white
+                           color: textColor2
                          )),
                    ),
                     Padding(
@@ -211,10 +212,10 @@ class HomePage extends StatelessWidget {
                       child: Text(
                        " Good morning! Step into a new day with our weather app. today's ${state.weather.weatherDescription}, ensuring you're ready for whatever weather comes your way. From sunrise up of today at ${DateFormat().add_jm().format(state.weather.sunrise!)} and  sunset at ${DateFormat().add_jm().format(state.weather.sunset!)}, stay informed ",
                        maxLines: 5,
-                       style: const TextStyle(
+                       style:   TextStyle(
                          fontSize: 15,
                          fontWeight: FontWeight.w600,
-                         color: Colors.white
+                         color:textColor2
                        )),
                     ),
                 ],

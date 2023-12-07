@@ -5,7 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:weather/weather.dart';
 
-import '../data/my_data.dart';
+import '../../data/my_data.dart';
+
 
 part 'weather_event.dart';
 

@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:weather_app/UI/loading_screen.dart';
 import 'package:weather_app/UI/widgets/WeatherInfo.dart';
 import 'package:weather_app/UI/widgets/getWeatherIcon.dart';
-import 'package:weather_app/bloc/weather_bloc.dart';
+
+import '../Domain/bloc/weather_bloc.dart';
+import '../data/colors.dart';
 
 class HomePageDesktop extends StatelessWidget {
   const HomePageDesktop({super.key});
@@ -28,18 +30,19 @@ class HomePageDesktop extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.width * 0.4,
+                      height: MediaQuery.of(context).size.width * 0.3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: const Color(0xfffae2bd)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Text(
+                           Text(
                             "Today",
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.w500,
+                              color: textColor1
                             ),
                           ),
                           Row(
@@ -49,39 +52,44 @@ class HomePageDesktop extends StatelessWidget {
                                   state.weather.weatherConditionCode!),
                               Text(
                                 " ${state.weather.temperature!.celsius!.round()}°C",
-                                style: const TextStyle(
+                                style:  TextStyle(
                                   fontSize: 80,
                                   fontWeight: FontWeight.w500,
+                                    color: textColor1
                                 ),
                               )
                             ],
                           ),
                           Text(state.weather.weatherMain!.toLowerCase(),
-                              style: const TextStyle(
+                              style:   TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
+                                  color: textColor1
                               )),
                           Text("${state.weather.areaName}",
-                              style: const TextStyle(
+                              style:   TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
+                                  color: textColor1
                               )),
                           Text(
                               DateFormat("M/d/y").format(state.weather.date!)
                               // "21 Oct 2019",
                               ,
-                              style: const TextStyle(
+                              style:   TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
+                                  color: textColor1
                               )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                   "Feels like ${state.weather.weatherDescription}",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
+                                      color: textColor1
                                   )),
                               const VerticalDivider(
                                 color: Colors.black,
@@ -89,9 +97,10 @@ class HomePageDesktop extends StatelessWidget {
                               ),
                               Text(
                                   "Sunset ${DateFormat().add_jm().format(state.weather.sunset!)}",
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
+                                      color: textColor1
                                   ))
                             ],
                           )
@@ -198,7 +207,7 @@ class HomePageDesktop extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 100,
                           ),
                           Text(
                               'The Weather is ${state.weather.weatherDescription!}',
