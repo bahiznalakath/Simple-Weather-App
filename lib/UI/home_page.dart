@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/UI/loading_screen.dart';
+import 'package:weather_app/UI/widgets/WeatherInfo.dart';
+import 'package:weather_app/UI/widgets/getWeatherIcon.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,12 +24,12 @@ class HomePage extends StatelessWidget {
             if (state is WeatherSuccess) {
               return Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
+                    SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
                   ),
                   Container(
-                    width: 340,
-                    height: 350,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.width * 0.8,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xfffae2bd)),
@@ -44,14 +46,7 @@ class HomePage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset(
-                              'assets/images/1.png',
-                              height: 100,
-                              width: 100,
-                            ),
-                            // SvgPicture.asset(
-                            //   "assets/images/Vector.svg",
-                            // ),
+                            getWeatherIcon(state.weather.weatherConditionCode!),
                             Text(
                               " ${state.weather.temperature!.celsius!.round()}°C",
                               style: const TextStyle(
@@ -61,35 +56,40 @@ class HomePage extends StatelessWidget {
                             )
                           ],
                         ),
-                         Text(state.weather.weatherMain!.toLowerCase(),
+                        Text(state.weather.weatherMain!.toLowerCase(),
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             )),
-                    Text("${state.weather.areaName}",
-                            style: TextStyle(
+                        Text("${state.weather.areaName}",
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             )),
-                        Text(DateFormat("M/d/y").format(state.weather.date!)
+                        Text(
+                            DateFormat("M/d/y").format(state.weather.date!)
                             // "21 Oct 2019",
-                          ,  style: const TextStyle(
+                            ,
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             )),
-                      Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Feels like 30",
-                                style: TextStyle(
+                            Text(
+                                "Feels like 30${state.weather.pressure!.round()}",
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 )),
-                            VerticalDivider(
+                            const VerticalDivider(
                               color: Colors.black,
+                              width: 20,
                             ),
-                            Text("Sunset 18:20${state.weather.sunset}",
-                                style: TextStyle(
+                            Text(
+                                "Sunset ${DateFormat().add_jm().format(state.weather.sunset!)}",
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 ))
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -114,264 +114,99 @@ class HomePage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Column(
-                              children: [
-                                const Text("Now",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: 'Now',
+                              value:
+                                  ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("2 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '2 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("3 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '3 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("4 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '4 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("5 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
-                            )
+                            WeatherInfoWidget(
+                              title: '5 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
+                            ),
                           ],
                         ),
-                        Divider(
+                        const Divider(
                           color: Colors.black,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Column(
-                              children: [
-                                Text("6 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '6 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("7 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '7 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("8 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '8 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("9 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
+                            WeatherInfoWidget(
+                              title: '9 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
                             ),
-                            Column(
-                              children: [
-                                Text("10 AM",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                    )),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/Vector.png",
-                                      width: 16,
-                                      height: 12,
-                                    ),
-                                    Text("25",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                        ))
-                                  ],
-                                )
-                              ],
-                            )
+                            WeatherInfoWidget(
+                              title: '10 AM',
+                              value:
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
+                              imagePath: 'assets/images/Vector.png',
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 7,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                   Column(
                     children: [
-                      Text("Random Text",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          )),
                       Padding(
-                        padding: EdgeInsets.all(15.0),
+                        padding: EdgeInsets.all(20.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text('The Weather is ${state.weather.weatherDescription!}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(20.0),
                         child: Text(
-                            "Improve him believe opinion offered met and end cheered forbade. Friendly as stronger speedily by recurred. Son interest wandered sir addition end say. Manners beloved affixed picture men ask.",
+                            " Improve him believe opinion offered met and end cheered forbade. Friendly as stronger speedily by recurred. Son interest wandered sir addition end say. Manners beloved affixed picture men ask.",
                             maxLines: 5,
                             style: TextStyle(
                               fontSize: 15,
