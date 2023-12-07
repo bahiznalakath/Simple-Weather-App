@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                                "Feels like 30${state.weather.pressure!.round()}",
+                                "Feels like ${state.weather.weatherDescription}",
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Container(
                     height: 130,
@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
                             WeatherInfoWidget(
                               title: 'Now',
                               value:
-                                  ' ${state.weather.temperature!.celsius!.round()}°C',
+                              ' ${state.weather.temperature!.celsius!.round()}°C',
                               imagePath: 'assets/images/Vector.png',
                             ),
                             WeatherInfoWidget(
@@ -187,34 +187,30 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                  ),
-                   Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text('The Weather is ${state.weather.weatherDescription!}',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              )),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text(
-                            " Improve him believe opinion offered met and end cheered forbade. Friendly as stronger speedily by recurred. Son interest wandered sir addition end say. Manners beloved affixed picture men ask.",
-                            maxLines: 5,
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            )),
-                      )
-                    ],
-                  ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.height * 0.01,
+                  // ),
+                   Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: Align(
+                       alignment: Alignment.centerLeft,
+                       child: Text('The Weather is ${state.weather.weatherDescription!}',
+                           style: const TextStyle(
+                             fontSize: 20,
+                             fontWeight: FontWeight.w600,
+                           )),
+                     ),
+                   ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                       " Good morning! Step into a new day with our weather app. today's ${state.weather.weatherDescription}, ensuring you're ready for whatever weather comes your way. From sunrise up of today at ${DateFormat().add_jm().format(state.weather.sunrise!)} and  sunset at ${DateFormat().add_jm().format(state.weather.sunset!)}, stay informed ",
+                       maxLines: 5,
+                       style: const TextStyle(
+                         fontSize: 15,
+                         fontWeight: FontWeight.w600,
+                       )),
+                    ),
                 ],
               );
             } else {
